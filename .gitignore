@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# The full thesis stays private; only the extracted data is published
+*.docx
+
+# Editors and OS
+.vscode/
+.DS_Store
+Thumbs.db
