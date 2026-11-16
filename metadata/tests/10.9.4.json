@@ -1,0 +1,26 @@
+{
+  "test_id": "10.9.4",
+  "campaign_id": "AUT-MINICPT-2018",
+  "condition": {
+    "clay_pct": 10,
+    "target_moisture_pct": 9.0,
+    "moisture_basis": "gravimetric",
+    "oil_pct": 4,
+    "extra_water_pct": 0.0,
+    "actual_moisture_pct": null,
+    "actual_dry_density_g_cm3": null
+  },
+  "acquisition": {
+    "n_readings": 41,
+    "depth_min_cm": 0.0,
+    "depth_max_cm": 80.0,
+    "test_date": null,
+    "lab_temperature_C": null,
+    "zero_reading_N": null
+  },
+  "provenance": {
+    "source_file": "Microsoft_Excel_Worksheet5.xlsx",
+    "derived_force": "sleeve"
+  },
+  "notes": []
+}

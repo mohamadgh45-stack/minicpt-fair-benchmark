@@ -14,7 +14,7 @@ surveys.
 | `data/raw/` | Original data, never edited. Each file is listed with its SHA-256 checksum in `MANIFEST.csv`. |
 | `data/processed/` | Data produced by the scripts in `src/`. Can always be regenerated. |
 | `src/` | Python scripts, run in the order below. |
-| `metadata/` | Metadata schema and one record per test (coming next). |
+| `metadata/` | `campaign.json` (shared by all tests), `schema/` (rules every record must pass) and `tests/` (one record per test). |
 | `reports/` | Quality-control reports (coming next). |
 | `docs/` | Measurement protocol and data management plan (coming next). |
 
@@ -27,6 +27,7 @@ pip install -r requirements.txt
 
 python src/extract_raw.py path/to/thesis.docx   # only needed once
 python src/build_tidy.py
+python src/build_metadata.py
 ```
 
 ## Data

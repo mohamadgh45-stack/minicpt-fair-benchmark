@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Mini-CPT test metadata record",
+  "description": "One record per CPT test. Campaign-wide information (materials, equipment, procedure) lives in metadata/campaign.json and is referenced by campaign_id.",
+  "type": "object",
+  "required": ["test_id", "campaign_id", "condition", "acquisition", "provenance"],
+  "additionalProperties": false,
+  "properties": {
+    "test_id": {
+      "type": "string",
+      "pattern": "^(10|30|50)\\.\\d{1,2}\\.(0|4|8)(\\.\\d{1,2})?$",
+      "description": "clay.moisture.oil[.extra water], all in percent"
+    },
+    "campaign_id": {"type": "string", "const": "AUT-MINICPT-2018"},
+
+    "condition": {
+      "type": "object",
+      "required": ["clay_pct", "target_moisture_pct", "moisture_basis", "oil_pct", "extra_water_pct"],
+      "additionalProperties": false,
+      "properties": {
+        "clay_pct": {"enum": [10, 30, 50]},
+        "target_moisture_pct": {"type": "number", "minimum": 0, "maximum": 40},
+        "moisture_basis": {"const": "gravimetric"},
+        "oil_pct": {"enum": [0, 4, 8]},
+        "extra_water_pct": {"type": "number", "minimum": 0, "maximum": 20},
+        "actual_moisture_pct": {"type": ["number", "null"]},
+        "actual_dry_density_g_cm3": {"type": ["number", "null"]}
+      }
+    },
+
+    "acquisition": {
+      "type": "object",
+      "required": ["n_readings", "depth_min_cm", "depth_max_cm", "test_date"],
+      "additionalProperties": false,
+      "properties": {
+        "n_readings": {"type": "integer", "minimum": 1},
+        "depth_min_cm": {"type": "number", "minimum": 0},
+        "depth_max_cm": {"type": "number", "maximum": 100},
+        "test_date": {"type": ["string", "null"], "format": "date"},
+        "lab_temperature_C": {"type": ["number", "null"]},
+        "zero_reading_N": {"type": ["number", "null"]}
+      }
+    },
+
+    "provenance": {
+      "type": "object",
+      "required": ["source_file", "derived_force"],
+      "additionalProperties": false,
+      "properties": {
+        "source_file": {"type": "string"},
+        "derived_force": {
+          "enum": ["sleeve", "total", "none"],
+          "description": "Which force was calculated by a spreadsheet formula from the other two, rather than typed in"
+        }
+      }
+    },
+
+    "notes": {"type": "array", "items": {"type": "string"}}
+  }
+}

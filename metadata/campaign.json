@@ -1,0 +1,63 @@
+{
+  "campaign_id": "AUT-MINICPT-2018",
+  "title": "Mini-CPT tests on sand-kaolinite mixtures contaminated with crude oil",
+  "institution": "Amirkabir University of Technology, Department of Civil and Environmental Engineering",
+  "investigator": "Mohammad Ghalenooee",
+  "supervisor": "Abolfazl Eslami",
+  "period": "2017-2018 (exact test dates not recorded)",
+  "related_publication": "Ghalenooee, M. (2019). Using CPT data in contaminated soil behavior classification. MSc thesis, Amirkabir University of Technology.",
+
+  "materials": {
+    "sands": [
+      {"name": "silica sand 141", "dominant_grain_size_um": "250-500"},
+      {"name": "silica sand 191", "dominant_grain_size_um": "90-180"}
+    ],
+    "clay": {"name": "kaolinite", "product_code": "ZWMK1", "fraction_finer_than_2um_pct": 32},
+    "contaminant": {
+      "name": "crude oil",
+      "source": "Tehran refinery",
+      "density_g_cm3": 0.891,
+      "dielectric_constant": 2.1
+    },
+    "mixtures": [
+      {"clay_pct": 10, "sand_141_pct": 45, "sand_191_pct": 45},
+      {"clay_pct": 30, "sand_141_pct": 35, "sand_191_pct": 35},
+      {"clay_pct": 50, "sand_141_pct": 25, "sand_191_pct": 25}
+    ]
+  },
+
+  "equipment": {
+    "cone_diameter_mm": 24,
+    "sleeve_length_mm": 90,
+    "tip_area_m2": 4.524e-4,
+    "sleeve_area_m2": 6.786e-3,
+    "pore_pressure_sensor": false,
+    "drive": "hydraulic jack with three-phase motor and LS iG5A inverter",
+    "data_logger": "Atron, 8 channels, 16 bit",
+    "test_chamber": "gr1 laboratory chamber",
+    "sensor_calibration": null,
+    "sensor_calibration_note": "Calibration factors and dates were not recorded in the thesis."
+  },
+
+  "procedure": {
+    "compaction_standard": "ASTM D698 (standard Proctor), used to find the optimum moisture content",
+    "moisture_basis": "gravimetric",
+    "equilibration_time_h": 24,
+    "equilibration_rationale": null,
+    "sample_preparation": "mixed at target moisture and oil content, stored 24 h in double plastic bags out of sunlight, compacted in the chamber in 5 cm layers with a wooden tamper, layer height checked at four corners",
+    "penetration_rate_mm_s": 20,
+    "penetration_rate_standard": "ASTM D3441 / ASTM D5778",
+    "reading_interval_cm": 2,
+    "max_depth_cm": 80,
+    "replicates_per_condition": 1
+  },
+
+  "processing": {
+    "raw_data_source": "Excel workbooks embedded in the thesis .docx, extracted by src/extract_raw.py",
+    "original_logger_files_available": false,
+    "conversion_to_qc_fs_in_thesis": null,
+    "conversion_note": "The thesis does not document how forces were converted to the qc and fs values in its Table 5-2; they cannot be reproduced from the raw forces."
+  },
+
+  "license": "CC BY 4.0"
+}
