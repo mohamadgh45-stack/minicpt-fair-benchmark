@@ -36,7 +36,7 @@
 ## Sharing and licence
 
 - Code: MIT licence.
-- Data and documentation: CC BY 4.0. Cite the MSc thesis (Ghalenooee, 2019,
+- Data and documentation: CC BY 4.0. Cite the MSc thesis (Ghalenoee, 2019,
   Amirkabir University of Technology) and this repository.
 - Planned: archive a tagged release on Zenodo to obtain a DOI.
 

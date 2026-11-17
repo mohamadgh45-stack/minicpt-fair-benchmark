@@ -87,7 +87,7 @@ GPR schema in `docs/` is a draft and has not been tested on real survey data.
 
 ## Citation and licence
 
-Ghalenooee, M. (2019). *Using CPT data in contaminated soil behavior
+Ghalenoee, M. (2019). *Using CPT data in contaminated soil behavior
 classification.* MSc thesis, Amirkabir University of Technology, Tehran
 (supervisor: Dr. A. Eslami).
 
