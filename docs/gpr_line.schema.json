@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GPR survey line metadata (draft)",
+  "description": "Draft, written as an exercise in transferring the CPT metadata design to GPR utility surveys. Three levels: campaign (site, devices, protocol) > survey (one device, one day) > line (one radargram). Each value is stored at the lowest level at which it is constant. Not yet tested on real GPR data.",
+  "type": "object",
+  "required": ["line_id", "survey", "acquisition", "geometry", "processing", "raw_file"],
+  "additionalProperties": false,
+  "$defs": {
+    "survey": {
+      "type": "object",
+      "required": ["survey_id", "campaign_id", "survey_date", "device", "operator", "ground_conditions"],
+      "additionalProperties": false,
+      "properties": {
+        "survey_id": {"type": "string"},
+        "campaign_id": {"type": "string"},
+        "survey_date": {"type": "string", "format": "date"},
+        "device": {
+          "type": "object",
+          "required": ["manufacturer", "model", "serial_number", "antenna_frequency_MHz"],
+          "properties": {
+            "manufacturer": {"type": "string"},
+            "model": {"type": "string"},
+            "serial_number": {"type": "string"},
+            "antenna_frequency_MHz": {"enum": [500, 1000]}
+          }
+        },
+        "operator": {"type": "string"},
+        "ground_conditions": {
+          "type": "object",
+          "required": ["soil_moisture_volumetric_pct", "moisture_method", "soil_temperature_C", "rain_last_48h_mm", "surface"],
+          "properties": {
+            "soil_moisture_volumetric_pct": {"type": ["number", "null"], "minimum": 0, "maximum": 60},
+            "moisture_method": {"type": ["string", "null"]},
+            "soil_conductivity_mS_m": {"type": ["number", "null"], "minimum": 0},
+            "soil_temperature_C": {"type": ["number", "null"]},
+            "groundwater_depth_m": {"type": ["number", "null"], "minimum": 0},
+            "rain_last_48h_mm": {"type": ["number", "null"], "minimum": 0},
+            "surface": {"enum": ["grass", "bare soil", "paving", "asphalt", "other"]}
+          }
+        }
+      }
+    }
+  },
+  "properties": {
+    "line_id": {"type": "string"},
+    "survey": {"$ref": "#/$defs/survey"},
+    "acquisition": {
+      "type": "object",
+      "required": ["trace_spacing_cm", "time_window_ns", "samples_per_trace", "stacking"],
+      "additionalProperties": false,
+      "properties": {
+        "trace_spacing_cm": {"type": "number", "exclusiveMinimum": 0, "maximum": 10},
+        "time_window_ns": {"type": "number", "minimum": 10, "maximum": 200},
+        "samples_per_trace": {"type": "integer", "minimum": 256},
+        "stacking": {"type": "integer", "minimum": 1},
+        "gain_applied_in_field": {"type": "boolean"}
+      }
+    },
+    "geometry": {
+      "type": "object",
+      "required": ["start_xy", "end_xy", "crs", "azimuth_deg", "positioning_method"],
+      "additionalProperties": false,
+      "properties": {
+        "start_xy": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+        "end_xy": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+        "crs": {"const": "EPSG:28992"},
+        "azimuth_deg": {"type": "number", "minimum": 0, "maximum": 360},
+        "positioning_method": {"enum": ["odometer", "GNSS-RTK", "total station", "odometer + GNSS-RTK"]},
+        "positioning_accuracy_cm": {"type": ["number", "null"], "minimum": 0}
+      }
+    },
+    "processing": {
+      "type": "object",
+      "required": ["steps", "velocity_m_ns", "velocity_method"],
+      "additionalProperties": false,
+      "properties": {
+        "steps": {"type": "array", "items": {"enum": ["time-zero", "dewow", "gain", "background removal", "bandpass", "migration"]}},
+        "velocity_m_ns": {"type": ["number", "null"], "minimum": 0.03, "maximum": 0.3},
+        "velocity_method": {"enum": ["hyperbola fitting", "known-depth target", "soil moisture estimate", "assumed", null]},
+        "software": {"type": ["string", "null"]}
+      }
+    },
+    "raw_file": {
+      "type": "object",
+      "required": ["filename", "format", "sha256"],
+      "additionalProperties": false,
+      "properties": {
+        "filename": {"type": "string"},
+        "format": {"type": "string"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "notes": {"type": "array", "items": {"type": "string"}}
+  }
+}

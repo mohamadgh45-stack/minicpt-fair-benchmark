@@ -1,0 +1,24 @@
+{
+  "line_id": "EXAMPLE-S01-L03",
+  "survey": {
+    "survey_id": "EXAMPLE-S01",
+    "campaign_id": "EXAMPLE-UMS-WINTER",
+    "survey_date": "2027-01-15",
+    "device": {"manufacturer": "example", "model": "example", "serial_number": "000", "antenna_frequency_MHz": 500},
+    "operator": "example operator",
+    "ground_conditions": {
+      "soil_moisture_volumetric_pct": 24.0,
+      "moisture_method": "TDR probe, mean of 5 points at 10 cm",
+      "soil_conductivity_mS_m": null,
+      "soil_temperature_C": 4.5,
+      "groundwater_depth_m": null,
+      "rain_last_48h_mm": 6.0,
+      "surface": "grass"
+    }
+  },
+  "acquisition": {"trace_spacing_cm": 2, "time_window_ns": 60, "samples_per_trace": 512, "stacking": 4, "gain_applied_in_field": false},
+  "geometry": {"start_xy": [0.0, 0.0], "end_xy": [20.0, 0.0], "crs": "EPSG:28992", "azimuth_deg": 90, "positioning_method": "odometer + GNSS-RTK", "positioning_accuracy_cm": null},
+  "processing": {"steps": ["time-zero", "dewow", "gain"], "velocity_m_ns": null, "velocity_method": null, "software": null},
+  "raw_file": {"filename": "EXAMPLE-S01-L03.dzt", "format": "GSSI DZT", "sha256": "0000000000000000000000000000000000000000000000000000000000000000"},
+  "notes": ["Fictitious example to illustrate the schema; not real survey data. Coordinates are local placeholders."]
+}
